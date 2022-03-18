@@ -4,6 +4,7 @@
 
 import random
 from colorama import init, Fore
+import os
 
 init()
 
@@ -70,9 +71,15 @@ def sair():
     return True
 
 
-filePalavras = open("./palavras.txt", "r")
-palavras = filePalavras.read().split(",")
-filePalavras.close()
+palavras = []
+if os.path.exists("palavras.txt"):
+    filePalavras = open("palavras.txt", "r")
+    palavras = filePalavras.read().split(",")
+    filePalavras.close()
+else:
+    print("  O arquivo 'palavras.txt' parece ter sido movido ou excluído da pasta.\n  O programa será encerrado!")
+    print("\n\n  Pressione qualquer tecla para fechar...")
+    os.system("pause >nul")
 
 while True:
     print(getSeparador())
